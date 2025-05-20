@@ -12,13 +12,14 @@ import UpdateTip from "@/pages/UpdateTip";
 import ExploreGardeners from "@/pages/ExploreGardeners";
 import MainLayout from "@/layouts/MainLayout";
 import PrivateRoute from "./PrivateRoute";
+import Index from "@/pages/Index";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
       <MainLayout>
-        <Home />
+        <Index />
       </MainLayout>
     ),
   },
