@@ -10,14 +10,7 @@ Located in the root directory, this contains the React application built with:
 - Tailwind CSS
 - Shadcn UI components
 - Firebase (for authentication)
-- Axios (for API calls)
-
-To run the frontend:
-```
-npm install
-npm run dev
-```
-The frontend runs on http://localhost:8080 by default.
+- RESTful API (for backend communication)
 
 ## Backend (Node.js/Express)
 Located in the `/backend` folder, this contains the Express server with MongoDB connection:
@@ -25,17 +18,40 @@ Located in the `/backend` folder, this contains the Express server with MongoDB 
 - MongoDB
 - CORS middleware
 
-To run the backend:
+## Installation & Setup
+
+### Cloning the Repository
+```bash
+git clone https://github.com/yourusername/green-garden-insights.git
+cd green-garden-insights
 ```
+
+### Backend Setup
+```bash
 cd backend
+npm install
+```
+
+Create a `.env` file in the backend directory with your MongoDB connection string:
+```
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/?retryWrites=true&w=majority
+PORT=5000
+```
+
+Start the backend server:
+```bash
+npm run dev
+```
+The backend runs on http://localhost:5000
+
+### Frontend Setup
+```bash
+# Return to the project root
+cd ..
 npm install
 npm run dev
 ```
-The backend runs on http://localhost:5000 by default.
-
-## Environment Variables
-- Frontend: Firebase configuration is included in the source code.
-- Backend: MongoDB connection string is stored in the backend/.env file.
+The frontend runs on http://localhost:8080
 
 ## Project Structure
 - `/src` - Frontend React application
