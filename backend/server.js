@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB Connection URI
-const uri = "mongodb+srv://GreenGarden:lieAyM0mYdJmxgd1@trytalk.omvjuoj.mongodb.net/?retryWrites=true&w=majority&appName=TryTalk";
+const uri = process.env.MONGODB_URI;
 
 // Create a MongoClient
 const client = new MongoClient(uri, {
@@ -61,11 +61,57 @@ async function startServer() {
       }
     });
     
+    app.get('/api/tips/:id', async (req, res) => {
+      try {
+        const id = req.params.id;
+        const tip = await tipsCollection.findOne({ id: parseInt(id) });
+        if (!tip) {
+          return res.status(404).json({ message: "Tip not found" });
+        }
+        res.json(tip);
+      } catch (error) {
+        res.status(500).json({ error: error.message });
+      }
+    });
+    
+    app.post('/api/tips', async (req, res) => {
+      try {
+        const newTip = req.body;
+        const result = await tipsCollection.insertOne(newTip);
+        res.status(201).json(result);
+      } catch (error) {
+        res.status(500).json({ error: error.message });
+      }
+    });
+    
     // User routes
     app.get('/api/users', async (req, res) => {
       try {
         const users = await usersCollection.find({}).toArray();
         res.json(users);
+      } catch (error) {
+        res.status(500).json({ error: error.message });
+      }
+    });
+    
+    app.get('/api/users/:id', async (req, res) => {
+      try {
+        const id = req.params.id;
+        const user = await usersCollection.findOne({ id: parseInt(id) });
+        if (!user) {
+          return res.status(404).json({ message: "User not found" });
+        }
+        res.json(user);
+      } catch (error) {
+        res.status(500).json({ error: error.message });
+      }
+    });
+    
+    app.post('/api/users', async (req, res) => {
+      try {
+        const newUser = req.body;
+        const result = await usersCollection.insertOne(newUser);
+        res.status(201).json(result);
       } catch (error) {
         res.status(500).json({ error: error.message });
       }

@@ -1,11 +1,9 @@
 
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api';
-
-// Create axios instance
+// API URL for local development
 const apiClient = axios.create({
-  baseURL: API_URL,
+  baseURL: '/api',  // This will use the proxy configured in vite.config.js
   headers: {
     'Content-Type': 'application/json',
   },
@@ -32,6 +30,16 @@ export const getTipById = async (id) => {
   }
 };
 
+export const createTip = async (tipData) => {
+  try {
+    const response = await apiClient.post('/tips', tipData);
+    return response.data;
+  } catch (error) {
+    console.error('Error creating tip:', error);
+    throw error;
+  }
+};
+
 // Users API
 export const getUsers = async () => {
   try {
@@ -39,6 +47,26 @@ export const getUsers = async () => {
     return response.data;
   } catch (error) {
     console.error('Error fetching users:', error);
+    throw error;
+  }
+};
+
+export const getUserById = async (id) => {
+  try {
+    const response = await apiClient.get(`/users/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching user ${id}:`, error);
+    throw error;
+  }
+};
+
+export const createUser = async (userData) => {
+  try {
+    const response = await apiClient.post('/users', userData);
+    return response.data;
+  } catch (error) {
+    console.error('Error creating user:', error);
     throw error;
   }
 };
