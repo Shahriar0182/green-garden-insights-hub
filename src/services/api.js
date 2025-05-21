@@ -40,6 +40,26 @@ export const createTip = async (tipData) => {
   }
 };
 
+export const updateTip = async (id, tipData) => {
+  try {
+    const response = await apiClient.put(`/tips/${id}`, tipData);
+    return response.data;
+  } catch (error) {
+    console.error(`Error updating tip ${id}:`, error);
+    throw error;
+  }
+};
+
+export const deleteTip = async (id) => {
+  try {
+    const response = await apiClient.delete(`/tips/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error deleting tip ${id}:`, error);
+    throw error;
+  }
+};
+
 // Users API
 export const getUsers = async () => {
   try {
@@ -67,6 +87,26 @@ export const createUser = async (userData) => {
     return response.data;
   } catch (error) {
     console.error('Error creating user:', error);
+    throw error;
+  }
+};
+
+export const updateUser = async (id, userData) => {
+  try {
+    const response = await apiClient.put(`/users/${id}`, userData);
+    return response.data;
+  } catch (error) {
+    console.error(`Error updating user ${id}:`, error);
+    throw error;
+  }
+};
+
+export const deleteUser = async (id) => {
+  try {
+    const response = await apiClient.delete(`/users/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error deleting user ${id}:`, error);
     throw error;
   }
 };
