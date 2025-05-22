@@ -1,14 +1,14 @@
 
-import { useTheme } from "next-themes"
-import { Toaster as Sonner, toast } from "sonner"
-
-import { cn } from "@/lib/utils"
+import React from "react";
+import { Toaster as SonnerToaster } from "sonner";
+import { cn } from "@/lib/utils";
 
 const Toaster = ({ ...props }) => {
-  const { theme = "system" } = useTheme()
+  // Use a local theme value instead of importing from next-themes
+  const theme = document.documentElement.classList.contains("dark") ? "dark" : "light";
 
   return (
-    <Sonner
+    <SonnerToaster
       theme={theme}
       className="toaster group"
       toastOptions={{
@@ -27,4 +27,6 @@ const Toaster = ({ ...props }) => {
   )
 }
 
-export { Toaster, toast }
+// Export the component and re-export toast from sonner
+export { Toaster }
+export { toast } from "sonner";
