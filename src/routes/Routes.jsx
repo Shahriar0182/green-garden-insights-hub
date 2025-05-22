@@ -43,7 +43,9 @@ const router = createBrowserRouter([
     path: "/browse-tips",
     element: (
       <MainLayout>
-        <BrowseTips />
+        <PrivateRoute>
+          <BrowseTips />
+        </PrivateRoute>
       </MainLayout>
     ),
   },
@@ -91,7 +93,9 @@ const router = createBrowserRouter([
     path: "/explore-gardeners",
     element: (
       <MainLayout>
-        <ExploreGardeners />
+        <PrivateRoute>
+          <ExploreGardeners />
+        </PrivateRoute>
       </MainLayout>
     ),
   },

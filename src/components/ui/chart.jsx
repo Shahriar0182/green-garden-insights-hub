@@ -228,7 +228,10 @@ ChartTooltipContent.displayName = "ChartTooltip"
 const ChartLegend = RechartsPrimitive.Legend
 
 const ChartLegendContent = React.forwardRef(
-  ({ className, hideIcon = false, payload, verticalAlign = "bottom", nameKey }, ref) => {
+  (
+    { className, hideIcon = false, payload, verticalAlign = "bottom", nameKey },
+    ref
+  ) => {
     const { config } = useChart()
 
     if (!payload?.length) {
@@ -276,7 +279,11 @@ const ChartLegendContent = React.forwardRef(
 ChartLegendContent.displayName = "ChartLegend"
 
 // Helper to extract item config from a payload.
-function getPayloadConfigFromPayload(config, payload, key) {
+function getPayloadConfigFromPayload(
+  config,
+  payload,
+  key
+) {
   if (typeof payload !== "object" || payload === null) {
     return undefined
   }
